@@ -14,3 +14,28 @@ One thing keep in mind that when dryRun=true then entire code should not run onl
 <br> So in case any of the function is missed in the Step Definition for any Step in Feature File, it will give us the message. So If you writing scenarios first and then implementing step definitions then add dryRun = true.
 ### Data Tables in Cucumber
 In this example, we will pass the test data using the data table and handle it using Raw() method.
+```
+Scenario: Successful Login with Valid Credentials
+ Given User is on Home Page
+ When User Navigate to LogIn Page
+ And User enters Credentials to LogIn
+    | testuser_1 | Test@153 |
+ Then Message displayed Login Successfully
+```
+The implementation of the above step will belike this:
+```
+@When("^User enters Credentials to LogIn$")
+ public void user_enters_testuser__and_Test(DataTable usercredentials) throws Throwable {
+ 
+ //Write the code to handle Data Table
+ List<List<String>> data = usercredentials.raw();
+ 
+ //This is to get the first data of the set (First Row + First Column)
+ driver.findElement(By.id("log")).sendKeys(data.get(0).get(0)); 
+ 
+ //This is to get the first data of the set (First Row + Second Column)
+     driver.findElement(By.id("pwd")).sendKeys(data.get(0).get(1));
+ 
+     driver.findElement(By.id("login")).click();
+ }
+```
