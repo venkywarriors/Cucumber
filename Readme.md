@@ -81,3 +81,35 @@ Scenario: Successful Login with Valid Credentials
      driver.findElement(By.id("login")).click();
  }
 ```
+### Data-Driven Testing Using Examples Keyword
+```
+
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+Feature: Login Action
+ 
+Scenario Outline: Successful Login with Valid Credentials
+ Given User is on Home Page
+ When User Navigate to LogIn Page
+ And User enters "<username>" and "<password>"
+ Then Message displayed Login Successfully
+Examples:
+    | username   | password |
+    | testuser_1 | Test@153 |
+    | testuser_2 | Test@153 |
+```
+```
+@When("^User enters \"(.*)\" and \"(.*)\"$")
+ public void user_enters_UserName_and_Password(String username, String password) throws Throwable {
+ driver.findElement(By.id("log")).sendKeys(username); 
+     driver.findElement(By.id("pwd")).sendKeys(password);
+ }
+```
