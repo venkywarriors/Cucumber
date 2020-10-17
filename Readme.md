@@ -116,3 +116,6 @@ CucumberRunner class extends AbstractTestNGCucumberTests and CucumberRunner clas
 
 public class TestRunner extends AbstractTestNGCucumberTests{}
 ```
+### Cucumber Extent Report
+https://www.toolsqa.com/selenium-cucumber-framework/cucumber-extent-report/
+https://medium.com/@praveendavidmathew/creating-cucumber-extent-report-the-right-way-3298a247e545
