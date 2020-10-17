@@ -83,17 +83,6 @@ Scenario: Successful Login with Valid Credentials
 ```
 ### Data-Driven Testing Using Examples Keyword
 ```
-
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
 Feature: Login Action
  
 Scenario Outline: Successful Login with Valid Credentials
