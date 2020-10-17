@@ -12,3 +12,5 @@ This is an sample project to demonstrate how to work with Selenium and cucumber 
 <strong>dryRun : </strong>It is used to verify that all steps of the feature file defined on step generator or glue code file or not. Syntax is : dryRun= true
 One thing keep in mind that when dryRun=true then entire code should not run only it checks that all the methods matched with feature file or not.
 <br> So in case any of the function is missed in the Step Definition for any Step in Feature File, it will give us the message. So If you writing scenarios first and then implementing step definitions then add dryRun = true.
+### Data Tables in Cucumber
+In this example, we will pass the test data using the data table and handle it using Raw() method.
