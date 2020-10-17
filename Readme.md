@@ -39,3 +39,27 @@ The implementation of the above step will belike this:
      driver.findElement(By.id("login")).click();
  }
 ```
+#### Maps in Data Tables
+```
+Scenario: Successful Login with Valid Credentials
+ Given User is on Home Page
+ When User Navigate to LogIn Page
+ And User enters Credentials to LogIn
+ | Username   | Password |
+    | testuser_1 | Test@153 |
+    | testuser_2 | Test@154 |
+ Then Message displayed Login Successfully
+```
+```
+@When("^User enters Credentials to LogIn$")
+ public void user_enters_testuser_and_Test(DataTable usercredentials) throws Throwable {
+ 
+ //Write the code to handle Data Table
+ for (Map<String, String> data : usercredentials.asMaps(String.class, String.class)) {
+ driver.findElement(By.id("log")).sendKeys(data.get("Username")); 
+     driver.findElement(By.id("pwd")).sendKeys(data.get("Password"));
+     driver.findElement(By.id("login")).click();
+ }
+ 
+ }
+```
