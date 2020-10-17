@@ -63,3 +63,21 @@ Scenario: Successful Login with Valid Credentials
  
  }
 ```
+### Parameterization without Example Keyword
+```
+Feature: Login Action
+ 
+Scenario: Successful Login with Valid Credentials
+ Given User is on Home Page
+ When User Navigate to LogIn Page
+ And User enters "testuser_1" and "Test@123"
+ Then Message displayed Login Successfully
+```
+```
+ @When("^User enters \"(.*)\" and \"(.*)\"$")
+ public void user_enters_UserName_and_Password(String username, String password) throws Throwable {
+ driver.findElement(By.id("log")).sendKeys(username); 
+     driver.findElement(By.id("pwd")).sendKeys(password);
+     driver.findElement(By.id("login")).click();
+ }
+```
