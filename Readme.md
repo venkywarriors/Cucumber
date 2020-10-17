@@ -120,3 +120,8 @@ public class TestRunner extends AbstractTestNGCucumberTests{}
 <a href="https://www.toolsqa.com/selenium-cucumber-framework/cucumber-extent-report/">Cucumber extent report</a>
 <br><a href="https://medium.com/@praveendavidmathew/creating-cucumber-extent-report-the-right-way-3298a247e545">Cucumber with Extent report</a>
 ### How To Get Feature Name And Scenario Name Using Cucumber-JVM
+```
+Scenario scenario
+"Feature Name : " +  scenario.getId().split(";")[0]
+"Scenario Name : " + scenario.getName()
+```
