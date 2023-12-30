@@ -125,3 +125,33 @@ Scenario scenario
 "Feature Name : " +  scenario.getId().split(";")[0]
 "Scenario Name : " + scenario.getName()
 ```
+### Running Cucumber tests in groups using TestNG XML and Cucumber tags 
+<a href="https://www.toolsqa.com/cucumber/cucumber-tags/">Cucumber tags</a><br>
+Tag the scenarios in your feature files with the desired tags. For example
+```
+@smoke
+Scenario: Verify login functionality
+  Given user navigates to the login page
+  When user enters valid credentials
+  Then user should be logged in successfully
+```
+Create a TestNG XML file where you can specify the tags you want to run. Here's an example
+```
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="CucumberSuite" parallel="methods" thread-count="2">
+
+    <test name="SmokeTest">
+        <groups>
+            <run>
+                <include name="smoke"/>
+            </run>
+        </groups>
+        <classes>
+            <class name="path.to.TestNGCucumberRunner"/>
+        </classes>
+    </test>
+
+    <!-- Add more test configurations for different groups -->
+
+</suite>
+```
