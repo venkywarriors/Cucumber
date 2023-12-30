@@ -192,3 +192,7 @@ import io.cucumber.testng.CucumberOptions;
 public class TestNGCucumberRunner extends AbstractTestNGCucumberTests {
 }
 ```
+Command line argument to run only the scenarios 
+```
+mvn test -Dcucumber.filter.tags="@tagname"
+``` 
