@@ -156,6 +156,7 @@ Create a TestNG XML file where you can specify the tags you want to run. Here's 
 Tag your feature files with unique identifiers. For example, you can use the @Feature tag in your feature files:
 ```
 @FeatureLogin
+Feature: Login functionality
 Scenario: Verify login functionality
   Given user navigates to the login page
   When user enters valid credentials
@@ -177,4 +178,17 @@ Scenario: Verify login functionality
     </test>
 
 </suite>
+```
+Update TestNG runner class includes the CucumberOptions annotation with the glue path and the location of your feature files. Ensure the feature path in the runner class matches the specified feature file in the TestNG XML.
+```
+import io.cucumber.testng.AbstractTestNGCucumberTests;
+import io.cucumber.testng.CucumberOptions;
+
+@CucumberOptions(
+    features = "src/test/resources/features/Login.feature",
+    glue = "com.example.steps",
+    plugin = {"pretty", "html:target/cucumber-reports"}
+)
+public class TestNGCucumberRunner extends AbstractTestNGCucumberTests {
+}
 ```
