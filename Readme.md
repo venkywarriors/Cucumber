@@ -195,4 +195,38 @@ public class TestNGCucumberRunner extends AbstractTestNGCucumberTests {
 Command line argument to run only the scenarios 
 ```
 mvn test -Dcucumber.filter.tags="@tagname"
-``` 
+```
+<a href="https://www.youtube.com/watch?v=zn-COYRirqA">Running a specific feature file</a><br>
+<a href="https://www.youtube.com/watch?v=rvbEmwq0qrw">How to run specific rows from Cucumber examples</a><br>
+### Executed in parallel using TestNG and Maven test execution plugins
+Add a cucumber runner by extending the AbstractTestNGCucumberTests class and overriding the scenarios method in the parallel package (same name as step definition package) in src/test/java folder. Set the parallel option value to true for the DataProvider annotation.
+```
+package parallel;
+
+import org.testng.annotations.DataProvider;
+import io.cucumber.testng.AbstractTestNGCucumberTests;
+
+public class RunCucumberTest extends AbstractTestNGCucumberTests{
+
+    @Override
+    @DataProvider(parallel = true)
+    public Object[][] scenarios() {
+        return super.scenarios();
+    }
+}
+```
+Add the Maven Surefire plugin configuration to the build section of the POM.
+```
+<plugin>
+    <groupId>org.apache.maven.plugins</groupId>
+    <artifactId>maven-surefire-plugin</artifactId>
+    <version>2.22.0</version>
+</plugin>
+```
+If you have multiple runners, set the parallel configuration to classes to reduce execution times. In addition the threadCount can be set to to the desired value or useUnlimitedThreads can be set to true.
+```
+<configuration>
+    <parallel>classes</parallel>
+    <threadCount>4</threadCount>
+</configuration>
+```
