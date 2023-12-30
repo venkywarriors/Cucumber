@@ -141,17 +141,40 @@ Create a TestNG XML file where you can specify the tags you want to run. Here's 
 <suite name="CucumberSuite" parallel="methods" thread-count="2">
 
     <test name="SmokeTest">
-        <groups>
-            <run>
-                <include name="smoke"/>
-            </run>
-        </groups>
         <classes>
-            <class name="path.to.TestNGCucumberRunner"/>
+            <class name="path.to.TestNGCucumberRunner">
+                <methods>
+                    <include name="^.*@smoke.*$"/>
+                </methods>
+            </class>
         </classes>
     </test>
 
-    <!-- Add more test configurations for different groups -->
+</suite>
+```
+### How to run specific feaure file in cucumber via testng.xml file
+Tag your feature files with unique identifiers. For example, you can use the @Feature tag in your feature files:
+```
+@FeatureLogin
+Scenario: Verify login functionality
+  Given user navigates to the login page
+  When user enters valid credentials
+  Then user should be logged in successfully
+
+```
+```
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="CucumberSuite" parallel="methods" thread-count="2">
+
+    <test name="LoginFeature">
+        <classes>
+            <class name="path.to.TestNGCucumberRunner">
+                <methods>
+                    <include name="Login.feature"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
 
 </suite>
 ```
